@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        body {
+          font-family: "Comic Sans MS", cursive, sans-serif;
+          background-color: #f0f4f2;
+          display: flex;
+          justify-content: center;
+          padding: 40px;
+        }
+
+        .container {
+          display: flex;
+          gap: 40px;
+          border: 2px solid #333;
+          padding: 20px;
+          border-radius: 10px;
+          background: white;
+        }
+
+        .panel {
+          padding: 20px;
+          border-radius: 10px;
+          width: 300px;
+        }
+
+        h1 {
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+
+        .tabs {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        .tabs span {
+          cursor: pointer;
+          font-weight: bold;
+          color: black;
+        }
+
+        .tabs .active {
+          color: #4169e1;
+          text-decoration: underline;
+        }
+
+        label {
+          display: block;
+          margin-top: 10px;
+          margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+          width: 100%;
+          padding: 8px;
+          border: 2px solid #333;
+          border-radius: 6px;
+          font-size: 16px;
+        }
+
+        button {
+          margin-top: 15px;
+          padding: 10px 20px;
+          font-size: 16px;
+          border: 2px solid #333;
+          border-radius: 6px;
+          background-color: white;
+          cursor: pointer;
+        }
+
+        .result {
+          font-size: 20px;
+          font-weight: bold;
+          margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="panel">
+        <h1>Unit Converter</h1>
+        <div class="tabs">
+            <span th:class="${isRedirectedFromLength} ? active"><a href="/" style="all:unset;">Length</a></span>
+            <span th:class="${isRedirectedFromWeight} ? active"><a href="/weight" style="all:unset;">Weight</a></span>
+            <span th:class="${isRedirectedFromTemp} ? active"><a href="/temp" style="all:unset;">Temperature</a></span>
+        </div>
+
+        <div class="result">Result of your calculation<br><br><span th:text="${unitConverterForm.getValue()}">20</span> <span th:text="${unitConverterForm.getFromUnit()}">ft</span> = <span th:text="${result}">609</span><span th:text="${unitConverterForm.getToUnit()}">cm</span></div>
+
+        <button><a style="all:unset;" th:href="@{${redirectUrl}}">Reset</a></button>
+    </div>
+</div>
+</body>
+</html>
